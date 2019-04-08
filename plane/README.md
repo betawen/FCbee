@@ -1,4 +1,4 @@
-# bee
+# plane
 
 > A Vue.js project
 
