@@ -6,6 +6,7 @@
 </template>
 
 <script>
+  import config from '../assets/config'
 export default {
   name: 'fcbee',
   data () {
@@ -80,6 +81,7 @@ export default {
       let scoreText;
       let lives;
       let enemyBullet;
+      let enemyBullets;
       let firingTimer = 0;
       let stateText;
       let livingEnemies = [];
@@ -101,13 +103,17 @@ export default {
        preload 进行资源的加载。
        create 会在资源加载完成后执行一次。
        update 会一直循环执行来处理每一帧动画。*/
-      let game = new Phaser.Game(canvasWidth, canvasHeight, Phaser.CANVAS, 'canvas', states);
+      let game = new Phaser.Game(canvasWidth, canvasHeight, Phaser.CANVAS, 'canvas', {
+        preload: preload,
+        create: create,
+        update: update,
+        render: render
+      });
       this.game = {};
       this.game.destroy = () => {
         game.destroy(true);
       };
-      let states = {
-        preload: function () {
+      function preload () {
           this.init = function () {
             // 水平和垂直居中画布
             game.pageAlignHorizontally = true;
@@ -122,16 +128,16 @@ export default {
             game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
           };
           // this.preload = () => {
-            game.load.image('bullet', '../assets/bullet.png');
-            game.load.image('enemyBullet', '../assets/enemy-bullet.png');
-            game.load.spritesheet('invader', '../assets/invader32x32x4.png', 32, 32);
-            game.load.image('ship', '../assets/player.png');
-            game.load.spritesheet('kaboom', '../assets/explode.png', 128, 128);
-            game.load.image('starfield', '../assets/starfield.png');
-            game.load.image('background', '../assets/games/starstruck/background2.png');
+            game.load.image('bullet', config.bullet);
+            game.load.image('enemyBullet', config["enemy-bullet"]);
+            game.load.spritesheet('invader', config.invader32x32x4, 32, 32);
+            game.load.image('ship', config.player);
+            game.load.spritesheet('kaboom', config.explode, 128, 128);
+            game.load.image('starfield', config.starfield);
+            game.load.image('background', config.invader);
           // }
-        },
-        create: function () {
+        };
+      function create () {
           // Phaser与三个不同的物理引擎（Arcade Physics，P2和Ninja Physics）捆绑在一起，第四个选项Box2D可作为商业插件使用。
           // 对于像我们这样的简单游戏，我们可以使用Arcade Physics引擎。我们不需要任何重的几何计算 - 毕竟只是一个球从墙壁和砖块弹起来。
           // 首先，让我们在游戏中初始化Arcade Physics引擎。physics.startSystem()在create函数开头添加方法（使其成为函数内的第一行），如下所示：
@@ -162,6 +168,11 @@ export default {
           enemyBullets.setAll('anchor.y', 1);
           enemyBullets.setAll('outOfBoundsKill', true);
           enemyBullets.setAll('checkWorldBounds', true);
+
+          //  The hero!
+          player = game.add.sprite(400, 500, 'ship');
+          player.anchor.setTo(0.5, 0.5);
+          game.physics.enable(player, Phaser.Physics.ARCADE);
 
           //  The baddies!
           aliens = game.add.group();
@@ -223,11 +234,8 @@ export default {
           cursors = game.input.keyboard.createCursorKeys();
           fireButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
-
-          player = Phaser.Sprite(50, 50, 'player')
-
-        },
-        update: function () {
+        };
+      function update () {
           starfield.tilePositionY += 2;
 
           if (player.alive) {
@@ -241,25 +249,20 @@ export default {
 
             if (fireButton.isDown) {
               // fire bullet
-              () => {
-
-              }
+              fireBullet();
             }
 
             if (game.time.now > firingTimer) {
               // enermy fires
-              () => {
-
-              }
+              enemyFires();
             }
 
             //  Run collision
-            game.physics.arcade.overlap(bullets, aliens, collisionHandler, null, this);
-            game.physics.arcade.overlap(enemyBullets, player, enemyHitsPlayer, null, this);
+            game.physics.arcade.overlap(bullets, aliens, collisionHandler, null, self);
+            game.physics.arcade.overlap(enemyBullets, player, enemyHitsPlayer, null, self);
           }
-        },
-        render: function () {}
-      }
+        };
+      function render () {};
 
       function fireBullet() {
         if (game.time.now > bulletTime) {
@@ -270,6 +273,82 @@ export default {
             bulletTime = game.time.now + 150;
           }
         }
+      };
+
+      function enemyFires() {
+        enemyBullet = enemyBullets.getFirstExists(false);
+        livingEnemies.length = 0;
+        aliens.forEachAlive(function (alien) {
+          livingEnemies.push(alien);
+        });
+        if (enemyBullet && livingEnemies.length > 0) {
+          let random = game.rnd.integerInRange(0, livingEnemies.length - 1 );
+          let shooter = livingEnemies[random];
+          enemyBullet.reset(shooter.body.x, shooter.body.y);
+          game.physics.arcade.moveToObject(enemyBullet, player, 120);
+          firingTimer = game.time.now += 2000;
+        }
+      };
+
+      function collisionHandler (bullet, alien) {
+
+        //  When a bullet hits an alien we kill them both
+        bullet.kill();
+        alien.kill();
+
+        //  Increase the score
+        score += 20;
+        scoreText.text = scoreString + score;
+
+        //  And create an explosion :)
+        var explosion = explosions.getFirstExists(false);
+        explosion.reset(alien.body.x, alien.body.y);
+        explosion.play('kaboom', 30, false, true);
+
+        if (aliens.countLiving() == 0)
+        {
+          score += 1000;
+          scoreText.text = scoreString + score;
+
+          enemyBullets.callAll('kill',this);
+          stateText.text = " You Won, \n Click to restart";
+          stateText.visible = true;
+
+          //the "click to restart" handler
+          game.input.onTap.addOnce(restart,this);
+        }
+
+      }
+
+      function enemyHitsPlayer (player,bullet) {
+
+        bullet.kill();
+
+        live = lives.getFirstAlive();
+
+        if (live)
+        {
+          live.kill();
+        }
+
+        //  And create an explosion :)
+        var explosion = explosions.getFirstExists(false);
+        explosion.reset(player.body.x, player.body.y);
+        explosion.play('kaboom', 30, false, true);
+
+        // When the player dies
+        if (lives.countLiving() < 1)
+        {
+          player.kill();
+          enemyBullets.callAll('kill');
+
+          stateText.text=" GAME OVER \n Click to restart";
+          stateText.visible = true;
+
+          //the "click to restart" handler
+          game.input.onTap.addOnce(restart,this);
+        }
+
       }
 
     }
