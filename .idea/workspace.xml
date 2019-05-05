@@ -2,17 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="717ba361-5753-45c2-a769-dab387c465e1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/plane/src/assets/config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/plane/src/components/bullet.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/plane/src/components/enemy-bullet.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/plane/src/components/explode.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/plane/src/components/invader.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/plane/src/components/invader32x32x4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/plane/src/components/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/plane/src/components/player.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/plane/src/components/starfield.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plane/src/components/Plane.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plane/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/plane/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plane/src/assets/bullet.png" beforeDir="false" afterPath="$PROJECT_DIR$/plane/src/assets/invaders/bullet.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plane/src/assets/enemy-bullet.png" beforeDir="false" afterPath="$PROJECT_DIR$/plane/src/assets/invaders/enemy-bullet.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plane/src/assets/explode.png" beforeDir="false" afterPath="$PROJECT_DIR$/plane/src/assets/invaders/explode.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plane/src/assets/invader.png" beforeDir="false" afterPath="$PROJECT_DIR$/plane/src/assets/invaders/invader.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plane/src/assets/invader32x32x4.png" beforeDir="false" afterPath="$PROJECT_DIR$/plane/src/assets/invaders/invader32x32x4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plane/src/assets/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/plane/src/assets/invaders/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plane/src/assets/player.png" beforeDir="false" afterPath="$PROJECT_DIR$/plane/src/assets/invaders/player.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plane/src/assets/starfield.png" beforeDir="false" afterPath="$PROJECT_DIR$/plane/src/assets/invaders/starfield.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plane/src/components/FCbee.vue" beforeDir="false" afterPath="$PROJECT_DIR$/plane/src/components/FCbee.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plane/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/plane/src/main.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,21 +26,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/plane/src/components/FCbee.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="268" column="10" selection-start-line="268" selection-start-column="10" selection-end-line="268" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/plane/src/assets/config.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="9" column="22" lean-forward="true" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+            <state relative-caret-position="1136">
+              <caret line="99" column="32" selection-start-line="99" selection-start-column="26" selection-end-line="99" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -46,8 +39,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/plane/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="10" column="48" selection-start-line="10" selection-start-column="48" selection-end-line="10" selection-end-column="48" />
+            <state relative-caret-position="228">
+              <caret line="12" column="7" lean-forward="true" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/plane/src/components/Plane.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="495">
+              <caret line="49" selection-start-line="49" selection-end-line="49" />
             </state>
           </provider>
         </entry>
@@ -61,13 +63,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/plane/src/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="3" column="35" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
+            <state relative-caret-position="76">
+              <caret line="4" column="39" lean-forward="true" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
+                <element signature="e#140#161#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -88,17 +91,13 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="Vue Single File Component" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>=</find>
-      <find>assets</find>
-      <find>this.init</find>
       <find>game.load.</find>
-      <find>var</find>
-      <find>starfield</find>
       <find>fly</find>
       <find>get</find>
       <find>canvasWidth</find>
@@ -112,6 +111,22 @@
       <find>preload</find>
       <find>../assets/</find>
       <find>bullet</find>
+      <find>starfield</find>
+      <find>scoreString</find>
+      <find>stateText</find>
+      <find>lives</find>
+      <find>kaboom</find>
+      <find>getFirstExists</find>
+      <find>collisionHandler</find>
+      <find>bullets</find>
+      <find>fireBullet</find>
+      <find>enemyFires</find>
+      <find>aliens</find>
+      <find>cursors</find>
+      <find>var</find>
+      <find>CANVAS</find>
+      <find>resetBullet</find>
+      <find>enemyBullets</find>
     </findStrings>
     <replaceStrings>
       <replace>:</replace>
@@ -128,17 +143,21 @@
       <list>
         <option value="$PROJECT_DIR$/plane/src/components/HelloWorld.vue" />
         <option value="$PROJECT_DIR$/plane/src/router/index.js" />
-        <option value="$PROJECT_DIR$/plane/src/main.js" />
         <option value="$PROJECT_DIR$/plane/static/phaser.min.js" />
         <option value="$PROJECT_DIR$/plane/index.html" />
         <option value="$PROJECT_DIR$/plane/src/assets/config.js" />
         <option value="$PROJECT_DIR$/plane/src/components/FCbee.vue" />
+        <option value="$PROJECT_DIR$/plane/src/components/Plane.vue" />
+        <option value="$PROJECT_DIR$/plane/src/main.js" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
     <option name="width" value="1920" />
     <option name="height" value="1080" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -176,6 +195,14 @@
               <item name="fcbee" type="462c0819:PsiDirectoryNode" />
               <item name="plane" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="invaders" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fcbee" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fcbee" type="462c0819:PsiDirectoryNode" />
+              <item name="plane" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -200,6 +227,9 @@
     <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.file-colors" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/plane/src/assets/invaders" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/plane/src/components" />
     </key>
@@ -226,12 +256,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1554692244190</updated>
-      <workItem from="1554692245484" duration="17583000" />
+      <workItem from="1554692245484" duration="21069000" />
+      <workItem from="1554776240291" duration="2264000" />
+      <workItem from="1556184834286" duration="967000" />
+      <workItem from="1557039831904" duration="3978000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17583000" />
+    <option name="totallyTimeSpent" value="28278000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
@@ -253,20 +286,14 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info active="true" anchor="right" content_ui="combo" id="Project" order="3" visible="true" weight="0.24919786" />
+      <window_info active="true" anchor="right" content_ui="combo" id="Project" order="3" visible="true" weight="0.25882354" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/bee/.eslintrc.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/bee/.eslintrc.js" />
     <entry file="file:///usr/local/lib/node_modules/eslint/lib/config/plugins.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="203">
@@ -274,22 +301,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bee/src/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bee/src/App.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="6" lean-forward="true" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/bee/src/main.js" />
+    <entry file="file://$PROJECT_DIR$/bee/src/App.vue" />
     <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
@@ -297,10 +310,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/plane/src/assets/bullet.png">
+    <entry file="file://$PROJECT_DIR$/plane/src/assets/invaders/explode.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/plane/src/assets/explode.png">
+    <entry file="file://$PROJECT_DIR$/plane/node_modules/phaser/plugins/camera3d/dist/camera3d.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="17199" column="5" lean-forward="true" selection-start-line="17199" selection-start-column="5" selection-end-line="17199" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plane/src/assets/invaders/invader.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plane/src/assets/invaders/invader32x32x4.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plane/static/phaser.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="452">
+          <caret line="2" column="277943" selection-start-line="2" selection-start-column="277943" selection-end-line="2" selection-end-column="277943" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plane/src/assets/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="5" column="451" lean-forward="true" selection-start-line="5" selection-start-column="451" selection-end-line="5" selection-end-column="451" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plane/src/assets/invaders/bullet.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plane/src/assets/invaders/enemy-bullet.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/plane/src/router/index.js">
@@ -310,13 +356,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/plane/src/main.js">
+    <entry file="file://$PROJECT_DIR$/plane/src/components/FCbee.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="35" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
+        <state relative-caret-position="1136">
+          <caret line="99" column="32" selection-start-line="99" selection-start-column="26" selection-end-line="99" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -329,45 +372,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/plane/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="48" selection-start-line="10" selection-start-column="48" selection-end-line="10" selection-end-column="48" />
+        <state relative-caret-position="228">
+          <caret line="12" column="7" lean-forward="true" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/plane/static/phaser.min.js">
+    <entry file="file://$PROJECT_DIR$/plane/src/components/Plane.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="452">
-          <caret line="2" column="519839" selection-start-line="2" selection-start-column="519825" selection-end-line="2" selection-end-column="519839" />
+        <state relative-caret-position="495">
+          <caret line="49" selection-start-line="49" selection-end-line="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plane/src/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="39" lean-forward="true" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+            <element signature="e#140#161#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plane/node_modules/phaser/plugins/camera3d/dist/camera3d.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="17199" column="5" lean-forward="true" selection-start-line="17199" selection-start-column="5" selection-end-line="17199" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plane/src/assets/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="22" lean-forward="true" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plane/src/assets/invader.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plane/src/assets/invader32x32x4.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plane/src/components/FCbee.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="268" column="10" selection-start-line="268" selection-start-column="10" selection-end-line="268" selection-end-column="10" />
         </state>
       </provider>
     </entry>

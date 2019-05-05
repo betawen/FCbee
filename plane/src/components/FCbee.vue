@@ -71,19 +71,19 @@ export default {
       let player;
       let aliens;
       let bullets;
-      let bulletTime = 0;
       let cursors;
       let fireButton;
       let explosions;
       let starfield;
       let score = 0;
-      let scoreString = '';
+      let scoreString = 'Score : ';
       let scoreText;
+      let stateText;
       let lives;
       let enemyBullet;
       let enemyBullets;
       let firingTimer = 0;
-      let stateText;
+      let bulletTime = 0;
       let livingEnemies = [];
       // let _config = {
       //   height: canvasHeight,
@@ -144,6 +144,8 @@ export default {
           game.physics.startSystem(Phaser.Physics.Arcade);
 
           //  The scrolling starfield background
+          // A TileSprite is a Sprite that has a repeating texture.
+          // The texture can be scrolled and scaled independently of the TileSprite itself.
           starfield = game.add.tileSprite(0, 0, canvasWidth, canvasHeight, 'starfield');
 
           bullets = game.add.group();
@@ -179,7 +181,8 @@ export default {
           aliens.enableBody = true;
           aliens.physicsBodyType = Phaser.Physics.ARCADE;
 
-          () => {
+          // 左右移动敌人
+          function createAliens() {
             for (let x = 0; x < 10; x ++) {
               for (let y = 0; y < 4; y ++) {
                 let alien = aliens.create(x * 48, y * 50, 'invader');
@@ -198,28 +201,30 @@ export default {
             tween.onLoop.add(() => {
               aliens.y += 10;
             }, self);
-          };
+          }
+        createAliens();
 
           //  The score
-          scoreString = 'Score : ';
-          scoreText = game.add.text(10, 10, scoreString + score, { font: '34px Arial', fill: '#fff' });
+          scoreText = game.add.text(10, 10, scoreString + score, { font: '24px Arial', fill: '#fff' });
 
           //  Lives
           lives = game.add.group();
-          game.add.text(game.world.width - 100, 10, 'Lives : ', { font: '34px Arial', fill: '#fff' });
+          // show lives
+          game.add.text(game.world.width - 100, 10, 'Lives : ', { font: '24px Arial', fill: '#fff' });
 
-          //  Text
-          stateText = game.add.text(game.world.centerX,game.world.centerY,' ', { font: '84px Arial', fill: '#fff' });
-          stateText.anchor.setTo(0.5, 0.5);
-          stateText.visible = false;
-
+          // add lives icon
           for (var i = 0; i < 3; i++)
           {
             var ship = lives.create(game.world.width - 100 + (30 * i), 60, 'ship');
             ship.anchor.setTo(0.5, 0.5);
             ship.angle = 90;
-            ship.alpha = 0.4;
+            ship.alpha = 0.6;
           }
+
+          //  Text
+          stateText = game.add.text(game.world.centerX,game.world.centerY,' ', { font: '84px Arial', fill: '#fff' });
+          stateText.anchor.setTo(0.5, 0.5);
+          stateText.visible = false;
 
           //  An explosion pool
           explosions = game.add.group();
@@ -229,16 +234,17 @@ export default {
             invader.anchor.y = 0.5;
             invader.animations.add('kaboom');
           }, self);
-
           //  And some controls to play the game with
           cursors = game.input.keyboard.createCursorKeys();
           fireButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+      };
 
-        };
       function update () {
+        // update by frame
           starfield.tilePositionY += 2;
 
           if (player.alive) {
+
             player.body.velocity.setTo(0, 0);
 
             if (cursors.left.isDown) {
@@ -258,14 +264,18 @@ export default {
             }
 
             //  Run collision
+            //  Checks for overlaps between two game objects.
             game.physics.arcade.overlap(bullets, aliens, collisionHandler, null, self);
             game.physics.arcade.overlap(enemyBullets, player, enemyHitsPlayer, null, self);
           }
-        };
+      };
+
       function render () {};
 
       function fireBullet() {
         if (game.time.now > bulletTime) {
+          // If true, find the first existing child;
+          // otherwise find the first non-existing child.
           bullet = bullets.getFirstExists(false);
           if (bullet) {
             bullet.reset(player.x, player.y + 8);
@@ -285,8 +295,9 @@ export default {
           let random = game.rnd.integerInRange(0, livingEnemies.length - 1 );
           let shooter = livingEnemies[random];
           enemyBullet.reset(shooter.body.x, shooter.body.y);
-          game.physics.arcade.moveToObject(enemyBullet, player, 120);
-          firingTimer = game.time.now += 2000;
+          // Move the given display object towards the destination object at a steady velocity.
+          game.physics.arcade.moveToObject(enemyBullet, player, 150);
+          firingTimer = game.time.now + 2000;
         }
       };
 
@@ -305,6 +316,7 @@ export default {
         explosion.reset(alien.body.x, alien.body.y);
         explosion.play('kaboom', 30, false, true);
 
+        // how to win
         if (aliens.countLiving() == 0)
         {
           score += 1000;
@@ -337,6 +349,7 @@ export default {
         explosion.play('kaboom', 30, false, true);
 
         // When the player dies
+        // how to lose
         if (lives.countLiving() < 1)
         {
           player.kill();
